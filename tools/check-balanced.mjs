@@ -1,7 +1,10 @@
 import { createRequire } from "module";
+import path from "path";
 
 const require = createRequire(import.meta.url);
 const { chromium } = require("playwright");
+const root = path.resolve(".");
+const url = `file:///${root.replace(/\\/g, "/")}/index.html`;
 
 const browser = await chromium.launch({ headless: true, channel: "msedge" });
 
@@ -16,36 +19,34 @@ for (const item of [
   });
   page.on("pageerror", (error) => errors.push(error.message));
 
-  await page.goto("file:///E:/CodeX/Threekit-Report-Mimic/index.html");
+  await page.goto(url);
   await page.waitForLoadState("domcontentloaded");
   await page.waitForTimeout(1800);
 
   const data = await page.evaluate(() => ({
     hasPretext: Boolean(window.Pretext),
-    pages: document.querySelectorAll(".report-page").length,
-    pretextLines: document.querySelectorAll(".pretext-line").length,
-    scale2: getComputedStyle(document.querySelector("#page-2"))
-      .getPropertyValue("--content-scale")
-      .trim(),
-    scale18: getComputedStyle(document.querySelector("#page-18"))
-      .getPropertyValue("--content-scale")
-      .trim(),
-    firstParagraphFont: getComputedStyle(document.querySelector("#page-2 .pretext-paragraph")).fontSize,
+    sections: document.querySelectorAll(".chapter-section").length,
+    citationLists: document.querySelectorAll(".citation-list").length,
+    citations: document.querySelectorAll(".citation-list li").length,
+    pretextBlocks: document.querySelectorAll(".pretext-copy").length,
+    pretextLines: document.querySelectorAll(".pretext-copy span").length,
+    firstParagraphFont: getComputedStyle(document.querySelector(".passage-card")).fontSize,
     bodyHeight: document.body.scrollHeight,
-    fills: Array.from(document.querySelectorAll(".report-page")).map((page) => {
-      const article = page.querySelector(".article-report");
-      const canvas = page.querySelector(".page-canvas");
+    fills: Array.from(document.querySelectorAll(".chapter-section")).map((section) => {
+      const intro = section.querySelector(".chapter-intro");
+      const body = section.querySelector(".chapter-body");
       return {
-        page: page.dataset.page,
-        scale: getComputedStyle(page).getPropertyValue("--content-scale").trim(),
-        fill: article && canvas ? Number((article.scrollHeight / canvas.clientHeight).toFixed(3)) : null,
+        section: section.dataset.section,
+        pageType: section.dataset.pageType,
+        introHeight: intro ? Math.round(intro.getBoundingClientRect().height) : null,
+        bodyHeight: body ? Math.round(body.getBoundingClientRect().height) : null,
       };
     }),
   }));
 
   console.log(item.name, JSON.stringify({ data, errors }));
   await page.screenshot({
-    path: `E:/CodeX/Threekit-Report-Mimic/source/${item.name}.png`,
+    path: path.join(root, "source", `${item.name}.png`),
     fullPage: false,
   });
   await page.close();

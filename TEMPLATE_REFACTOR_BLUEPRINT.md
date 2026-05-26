@@ -1,75 +1,99 @@
-# Multi-Page Report Template Refactor Blueprint
+# Cited Template Refactor Blueprint
 
-This file turns the 22-page PDF analysis into an executable frontend blueprint for Codex. The goal is not to copy third-party templates. Use the references as component and layout archetypes, while preserving the Threekit report design language already extracted in `DESIGN_LANGUAGE.md`.
+This blueprint is derived from `C:/Users/Harvey/Downloads/deep-research-report (1).md`.
+It replaces the earlier A/B/C reference scheme with the cited U/M/S/D/V/N/A/TD/X/T/G/E/SE scheme from that report.
 
-## Global Assumptions
+The implementation target is still this static longform site. The PDF text remains the canonical content source, and each web section now exposes both:
 
-- Source report: `source/canonical-extracted-text.txt`
-- Page count: 22
-- Framework: unspecified
-- Current implementation: static HTML/CSS/JS with vendored Pretext
-- Design system: report-specific tokens in `assets/styles.css`
-- Deployment target: GitHub Pages when GitHub authentication is available
+- a readable, copyable Pretext-driven passage layer
+- a per-section template citation list with clickable source references
+
+## Global Direction
+
+- `U1` is always the global shell: current Threekit report mimic, floating rail, canonical source ledger, search, density controls, and source toggle.
+- Each page uses two additional local references from the research report.
+- Third-party references are archetypes only. Do not copy their prose, images, or proprietary visual assets.
+- Prefer official/open implementation sources: MUI, shadcn/ui, Docusaurus, VitePress, Next.js, Ant Design Pro, TDesign, MUI X, DataTables, AG Grid, Apache ECharts, and Semi Design.
+- Keep the extracted Threekit design language: warm paper, deep teal ink, coral accent, condensed editorial headings, restrained cards, and table/chart-ready panels.
+
+## Reference Registry
+
+| ID | Reference | URL | Use |
+|---|---|---|---|
+| U1 | Threekit Report Mimic | `https://gmyoung.github.io/Threekit-Report-Mimic/` | Global shell and interaction model |
+| M1 | MUI Dashboard Template | `https://mui.com/material-ui/getting-started/templates/dashboard/` | KPI/dashboard sections |
+| M2 | MUI Marketing Page | `https://mui.com/material-ui/getting-started/templates/marketing-page/` | Hero, conclusion, CTA rhythm |
+| M3 | MUI Blog Template | `https://mui.com/material-ui/getting-started/templates/blog/` | Editorial/foreword prose |
+| M4 | MUI Checkout Template | `https://mui.com/material-ui/getting-started/templates/checkout/` | Method, stepper, audit process |
+| S1 | shadcn/ui Blocks | `https://ui.shadcn.com/blocks` | Card clusters and dashboard blocks |
+| D1 | Docusaurus Docs Layout | `https://docusaurus.io/docs/styling-layout` | Docs prose, limitations, footer structure |
+| V1 | VitePress Home Theme | `https://vitepress.dev/reference/default-theme-home-page` | TOC, docs-home, appendix navigation |
+| N1 | Next.js Dashboard App | `https://nextjs.org/learn/dashboard-app` | App structure, search, pagination patterns |
+| A1 | Ant Design Pro | `https://preview.pro.ant.design` | Enterprise method/process affordances |
+| TD1 | TDesign React Starter | `https://tdesign.tencent.com/starter/react/` | Chinese enterprise cards and tokens |
+| X1 | MUI X Data Grid Inventory | `https://mui.com/x/react-data-grid/demos/inventory/` | Ranking and dense table sections |
+| X2 | MUI X Charts | `https://mui.com/x/react-charts/` | Charts, heatmaps, legends, tooltips |
+| T1 | DataTables | `https://datatables.net/examples/index` | Lightweight sortable/searchable tables |
+| G1 | AG Grid React Data Grid | `https://www.ag-grid.com/react-data-grid/getting-started/` | Heavy data-grid model |
+| E1 | Apache ECharts | `https://echarts.apache.org/examples/en/index.html` | Open chart stack for heatmaps and distributions |
+| SE1 | Semi Design Table | `https://semi.design/en-US/show/table` | Appendix table and navigation cues |
 
 ## Page Mapping
 
-| Page | Page Type | Reference IDs | Selected | Component Priority |
+| Page | Page Type | References | Local Reference | Component Priority |
 |---|---|---|---|---|
-| 1 | cover | A1 / A2 / A3 | A2 | hero, title block, subtitle, date, logo |
-| 2 | kpi-summary | B1 / B3 / E3 | B1 | stat cards, trend chart, highlight list |
-| 3 | foreword | C1 / C2 / C3 | C1 | author meta, lead paragraph, long copy |
-| 4 | research-method | D1 / D2 / D3 | D2 | hero intro, feature grid, notes |
-| 5 | contents | D2 / H2 / B2 | D2 | chapter nav, subsection list, progress marker |
-| 6 | executive-summary | B1 / I3 / J1 | I3 | summary cards, main chart, key bullets |
-| 7 | definition-explainer | G3 / G5 / G2 | G3 | bar chart, callout notes, definitions |
-| 8 | scoring-method | E2 / G4 / E1 | E2 | stepper, methodology diagram, radar |
-| 9 | distribution-example | G3 / G6 / G2 | G3 | chart, annotation, worked example |
-| 10 | ranking-table | F1 / F2 / F3 | F1 | table, filters, sort, pagination |
-| 11 | comparison | B1 / G3 / J1 | G3 | kpi cards, comparison bars, insight callout |
-| 12 | intent-cards | A2 / D1 / B2 | B2 | grouped cards, icons, short copy |
-| 13 | heatmap | G1 / G2 / J1 | G2 | heatmap, legend, tooltip, explanation panel |
-| 14 | self-audit | E2 / I1 / E3 | E2 | checklist, progress state, sticky summary |
-| 15 | vertical-deep-dive | F1 / H4 / H3 | H3 | ranked table, filters, detail pane |
-| 16 | vertical-deep-dive | J1 / C3 / E1 | J1 | section intro, infographic, ranked callouts |
-| 17 | vertical-deep-dive | J1 / H3 / C3 | J1 | deep-dive modules, comparison cards |
-| 18 | price-table | J2 / F3 / B3 | F3 | chapter opener, price table, notes |
-| 19 | limitations | D2 / D1 / C1 | D2 | prose, inline lists, note blocks |
-| 20 | conclusion | A3 / A2 / J1 | A3 | conclusion headline, insight cards |
-| 21 | future-cta | A2 / J2 / D1 | A2 | future questions, CTA block, contact link |
-| 22 | appendix | D2 / H1 / F3 | D2 | appendix nav, searchable table, footer |
+| 1 | cover | U1 / M2 / V1 | M2 | shell, hero, actions, footer |
+| 2 | summary | U1 / M1 / N1 | M1 | stats, dashboard cards, search-ready data |
+| 3 | foreword | U1 / M3 / D1 | M3 | lead card, article body, docs aside |
+| 4 | method | U1 / M4 / A1 | M4 | stepper, method summary, enterprise status |
+| 5 | toc | U1 / V1 / D1 | V1 | toc, search rail, progress marker |
+| 6 | summary | U1 / M1 / N1 | M1 | stats, executive cards, dashboard chart |
+| 7 | chart | U1 / X2 / E1 | E1 | chart frame, bar/heatmap, annotation |
+| 8 | method | U1 / M4 / A1 | M4 | score stepper, weights, rules |
+| 9 | chart | U1 / X2 / E1 | X2 | distribution chart, worked example, source note |
+| 10 | ranking-table | U1 / X1 / G1 | X1 | ranking table, filters, sort, pagination |
+| 11 | summary | U1 / M1 / N1 | M1 | comparison KPIs, gap narrative, insight callout |
+| 12 | card-cluster | U1 / S1 / TD1 | S1 | grouped cards, section cards, enterprise tokens |
+| 13 | heatmap | U1 / X2 / E1 | E1 | heatmap, legend, tooltip, explanation |
+| 14 | method | U1 / M4 / A1 | M4 | checklist, progress state, self-audit |
+| 15 | card-cluster | U1 / S1 / TD1 | TD1 | vertical cards, deep dive modules, detail panes |
+| 16 | chart | U1 / X2 / E1 | E1 | chart wrapper, vertical breakdown, callouts |
+| 17 | chart | U1 / X2 / E1 | E1 | chart wrapper, comparison cards, notes |
+| 18 | lite-table | U1 / T1 / SE1 | T1 | price table, light filters, notes |
+| 19 | foreword | U1 / M3 / D1 | D1 | method prose, limitations, callouts |
+| 20 | conclusion | U1 / M2 / V1 | M2 | summary cards, CTA rhythm, footer |
+| 21 | conclusion | U1 / M2 / V1 | M2 | future questions, CTA block, contact |
+| 22 | appendix | U1 / V1 / SE1 | SE1 | appendix nav, searchable list, footer |
 
-## Reference Pool
+## Citation Behavior
 
-- A-series: annual-report/marketing hero and narrative references.
-- B-series: dashboard/document-workspace references.
-- C-series: editorial/blog/article references.
-- D-series: docs/home/research explanation references.
-- E-series: enterprise pro layout and stepper references.
-- F-series: data table references.
-- G-series: chart and heatmap references.
-- H-series: navigation/table/pro dashboard references.
-- I-series: Next.js dashboard learning references.
-- J-series: data-storytelling and microsite visual references.
+Every rendered section includes an ordered `.citation-list` after its component-priority chips.
+The visible reference IDs map to `referenceRegistry` in `assets/js/site.js`, so the page can render:
 
-Use Awwwards and Dribbble only for visual rhythm. Do not copy visual assets, illustrations, animation, or text. Prefer open-source/official implementation patterns for code structure.
+- citation number
+- reference ID
+- reference name
+- clickable official URL
+- implementation note
+- license or usage caution
 
-## Implementation Rules
+This keeps the citations adjacent to the section that uses them, instead of burying all sources in a single appendix.
 
-1. Keep one global shell and one design language.
-2. Use page archetypes to vary layout density, not to create 22 unrelated pages.
-3. Preserve every source section in the readable layer and canonical source layer.
-4. Keep Pretext as the text layout engine.
-5. Keep the floating rail, search, density control, source toggle, and copy-all controls.
-6. Verify with `tools/verify-rendered-text.mjs` and `tools/smoke-report-site.mjs` after every refactor.
+## Verification Rules
 
-## Current Static Implementation
+Run these before deployment:
 
-The page blueprint is encoded in `assets/js/site.js` as `pageBlueprints`. Each rendered section receives:
+```powershell
+$env:NODE_PATH='C:\Users\Harvey\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\.pnpm\playwright-core@1.60.0\node_modules;C:\Users\Harvey\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\.pnpm\playwright@1.60.0\node_modules'
+& 'C:\Users\Harvey\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' '.\tools\verify-rendered-text.mjs'
+& 'C:\Users\Harvey\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' '.\tools\smoke-report-site.mjs'
+```
 
-- `data-page-type`
-- `data-template`
-- `chapter-section--{type}` class
-- visible template metadata
-- visible component-priority chips
+Expected checks:
 
-CSS in `assets/styles.css` then maps specific page archetypes to different presentation treatments, while preserving the same tokens and typography system.
+- 22 visible report sections
+- 22 canonical source sections
+- no missing canonical text
+- all visible passage text remains copyable
+- 66 section citations rendered, three per section
+- no browser console errors during smoke test

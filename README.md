@@ -12,6 +12,12 @@ Paragraph line breaking is driven by a vendored local copy of `@chenglou/pretext
 
 The interaction model follows an Emil design-engineering pass: minimal motion, precise press states, sticky navigation, progress, search, density controls, source toggles, and compact components that privilege reading over spectacle.
 
+## Cited Template Blueprint
+
+The page archetypes and per-section citations are derived from `C:/Users/Harvey/Downloads/deep-research-report (1).md` and recorded in `TEMPLATE_REFACTOR_BLUEPRINT.md`.
+
+Each rendered section lists the three references used for that section, with clickable source links pulled from `referenceRegistry` in `assets/js/site.js`.
+
 ## Canonical Text Verification
 
 The extracted PDF text is stored in:
@@ -39,6 +45,7 @@ The current expected result is `ok: true` with 22 rendered sections and 22 canon
 - `assets/data/report-manifest.json` - extracted page text and coordinate manifest
 - `DESIGN_LANGUAGE.md` - extracted design language notes
 - `REPORT_SITE_SYSTEM.md` - typography, Pretext, interaction, and verification rules
+- `TEMPLATE_REFACTOR_BLUEPRINT.md` - cited template mapping derived from the deep research report
 - `skills/interactive-report-longform/` - reusable skill distilled from this project
 - `tools/render-report.mjs` - repeatable PDF render/extraction script
 - `tools/bundle-pretext.mjs` - repeatable local Pretext bundling script

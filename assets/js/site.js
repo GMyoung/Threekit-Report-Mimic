@@ -41,29 +41,153 @@ const chapterTitles = [
   "Companies in the cohort",
 ];
 
+const referenceRegistry = {
+  U1: {
+    name: "Threekit Report Mimic",
+    kind: "global shell",
+    url: "https://gmyoung.github.io/Threekit-Report-Mimic/",
+    note: "Longform shell, canonical source layer, rail, search, density, source toggle.",
+    license: "License unspecified in repo snapshot.",
+  },
+  M1: {
+    name: "MUI Dashboard Template",
+    kind: "KPI/dashboard",
+    url: "https://mui.com/material-ui/getting-started/templates/dashboard/",
+    note: "KPI cards, chart cards, dashboard density.",
+    license: "MUI Core MIT; verify MUI X boundaries separately.",
+  },
+  M2: {
+    name: "MUI Marketing Page",
+    kind: "hero/CTA",
+    url: "https://mui.com/material-ui/getting-started/templates/marketing-page/",
+    note: "Hero rhythm, CTA bands, feature sections.",
+    license: "MUI Core MIT.",
+  },
+  M3: {
+    name: "MUI Blog Template",
+    kind: "editorial article",
+    url: "https://mui.com/material-ui/getting-started/templates/blog/",
+    note: "Article metadata, lead copy, editorial cards.",
+    license: "MUI Core MIT.",
+  },
+  M4: {
+    name: "MUI Checkout Template",
+    kind: "stepper/method",
+    url: "https://mui.com/material-ui/getting-started/templates/checkout/",
+    note: "Stepper and summary panel pattern for method pages.",
+    license: "MUI Core MIT.",
+  },
+  S1: {
+    name: "shadcn/ui Dashboard Blocks",
+    kind: "cards/data blocks",
+    url: "https://ui.shadcn.com/blocks",
+    note: "Copyable sidebar, cards, chart area, data table blocks.",
+    license: "MIT/open code.",
+  },
+  D1: {
+    name: "Docusaurus Docs Layout",
+    kind: "docs structure",
+    url: "https://docusaurus.io/docs/styling-layout",
+    note: "Docs navigation, content page, callout and footer patterns.",
+    license: "Code MIT; docs content Creative Commons.",
+  },
+  V1: {
+    name: "VitePress Home Theme",
+    kind: "docs home/TOC",
+    url: "https://vitepress.dev/reference/default-theme-home-page",
+    note: "Hero, features, sidebar, search, footer DSL.",
+    license: "MIT.",
+  },
+  N1: {
+    name: "Next.js Dashboard App",
+    kind: "app structure/search",
+    url: "https://nextjs.org/learn/dashboard-app",
+    note: "Shared layout, search, pagination and data loading patterns.",
+    license: "Official tutorial pattern; do not copy tutorial prose.",
+  },
+  A1: {
+    name: "Ant Design Pro",
+    kind: "enterprise method",
+    url: "https://preview.pro.ant.design",
+    note: "Enterprise dashboard, forms, step flows and result states.",
+    license: "MIT.",
+  },
+  TD1: {
+    name: "TDesign React Starter",
+    kind: "CN enterprise cards",
+    url: "https://tdesign.tencent.com/starter/react/",
+    note: "Theme tokens, cards, tables and Chinese enterprise shell.",
+    license: "MIT.",
+  },
+  X1: {
+    name: "MUI X Data Grid Inventory",
+    kind: "data grid",
+    url: "https://mui.com/x/react-data-grid/demos/inventory/",
+    note: "Data grid density, status cells, sort/filter/pagination pattern.",
+    license: "MUI X open-core; verify Pro/Premium feature use.",
+  },
+  X2: {
+    name: "MUI X Charts",
+    kind: "charts/heatmap",
+    url: "https://mui.com/x/react-charts/",
+    note: "Bar, heatmap, radar and tooltip/legend chart patterns.",
+    license: "Community MIT; advanced charts may require Pro.",
+  },
+  T1: {
+    name: "DataTables",
+    kind: "lightweight table",
+    url: "https://datatables.net/examples/index",
+    note: "Progressive table search, sort, pagination and responsive wrappers.",
+    license: "MIT.",
+  },
+  G1: {
+    name: "AG Grid React Data Grid",
+    kind: "heavy data grid",
+    url: "https://www.ag-grid.com/react-data-grid/getting-started/",
+    note: "High-performance grid, column definitions and virtualization.",
+    license: "Community free/MIT; Enterprise commercial.",
+  },
+  E1: {
+    name: "Apache ECharts",
+    kind: "open chart stack",
+    url: "https://echarts.apache.org/examples/en/index.html",
+    note: "Open chart stack for heatmap, matrix, distribution and annotation.",
+    license: "Apache 2.0.",
+  },
+  SE1: {
+    name: "Semi Design Navigation + Table",
+    kind: "navigation/table",
+    url: "https://semi.design/en-US/show/table",
+    note: "Table filters/sorters and navigation patterns for appendix pages.",
+    license: "MIT.",
+  },
+};
+
+const citationOrder = Object.keys(referenceRegistry);
+
 const pageBlueprints = [
-  { type: "cover", refs: ["A1", "A2", "A3"], selected: "A2", components: ["hero", "title block", "subtitle", "date", "logo"] },
-  { type: "kpi-summary", refs: ["B1", "B3", "E3"], selected: "B1", components: ["stat cards", "trend chart", "highlight list"] },
-  { type: "foreword", refs: ["C1", "C2", "C3"], selected: "C1", components: ["author meta", "lead paragraph", "long copy"] },
-  { type: "research-method", refs: ["D1", "D2", "D3"], selected: "D2", components: ["hero intro", "feature grid", "notes"] },
-  { type: "contents", refs: ["D2", "H2", "B2"], selected: "D2", components: ["chapter nav", "subsection list", "progress marker"] },
-  { type: "executive-summary", refs: ["B1", "I3", "J1"], selected: "I3", components: ["summary cards", "main chart", "key bullets"] },
-  { type: "definition-explainer", refs: ["G3", "G5", "G2"], selected: "G3", components: ["bar chart", "callout notes", "definitions"] },
-  { type: "scoring-method", refs: ["E2", "G4", "E1"], selected: "E2", components: ["stepper", "methodology diagram", "radar"] },
-  { type: "distribution-example", refs: ["G3", "G6", "G2"], selected: "G3", components: ["chart", "annotation", "worked example"] },
-  { type: "ranking-table", refs: ["F1", "F2", "F3"], selected: "F1", components: ["table", "filters", "sort", "pagination"] },
-  { type: "comparison", refs: ["B1", "G3", "J1"], selected: "G3", components: ["kpi cards", "comparison bars", "insight callout"] },
-  { type: "intent-cards", refs: ["A2", "D1", "B2"], selected: "B2", components: ["grouped cards", "icons", "short copy"] },
-  { type: "heatmap", refs: ["G1", "G2", "J1"], selected: "G2", components: ["heatmap", "legend", "tooltip", "explanation panel"] },
-  { type: "self-audit", refs: ["E2", "I1", "E3"], selected: "E2", components: ["checklist", "progress state", "sticky summary"] },
-  { type: "vertical-deep-dive", refs: ["F1", "H4", "H3"], selected: "H3", components: ["ranked table", "filters", "detail pane"] },
-  { type: "vertical-deep-dive", refs: ["J1", "C3", "E1"], selected: "J1", components: ["section intro", "infographic", "ranked callouts"] },
-  { type: "vertical-deep-dive", refs: ["J1", "H3", "C3"], selected: "J1", components: ["deep-dive modules", "comparison cards"] },
-  { type: "price-table", refs: ["J2", "F3", "B3"], selected: "F3", components: ["chapter opener", "price table", "notes"] },
-  { type: "limitations", refs: ["D2", "D1", "C1"], selected: "D2", components: ["prose", "inline lists", "note blocks"] },
-  { type: "conclusion", refs: ["A3", "A2", "J1"], selected: "A3", components: ["conclusion headline", "insight cards"] },
-  { type: "future-cta", refs: ["A2", "J2", "D1"], selected: "A2", components: ["future questions", "CTA block", "contact link"] },
-  { type: "appendix", refs: ["D2", "H1", "F3"], selected: "D2", components: ["appendix nav", "searchable table", "footer"] },
+  { type: "cover", refs: ["U1", "M2", "V1"], selected: "U1", local: "M2", components: ["shell", "hero", "actions", "footer"] },
+  { type: "summary", refs: ["U1", "M1", "N1"], selected: "U1", local: "M1", components: ["stats", "dashboard cards", "search-ready data"] },
+  { type: "foreword", refs: ["U1", "M3", "D1"], selected: "U1", local: "M3", components: ["lead card", "article body", "docs aside"] },
+  { type: "method", refs: ["U1", "M4", "A1"], selected: "U1", local: "M4", components: ["stepper", "method summary", "enterprise status"] },
+  { type: "toc", refs: ["U1", "V1", "D1"], selected: "U1", local: "V1", components: ["toc", "search rail", "progress marker"] },
+  { type: "summary", refs: ["U1", "M1", "N1"], selected: "U1", local: "M1", components: ["stats", "executive cards", "dashboard chart"] },
+  { type: "chart", refs: ["U1", "X2", "E1"], selected: "U1", local: "E1", components: ["chart frame", "bar/heatmap", "annotation"] },
+  { type: "method", refs: ["U1", "M4", "A1"], selected: "U1", local: "M4", components: ["score stepper", "weights", "rules"] },
+  { type: "chart", refs: ["U1", "X2", "E1"], selected: "U1", local: "X2", components: ["distribution chart", "worked example", "source note"] },
+  { type: "ranking-table", refs: ["U1", "X1", "G1"], selected: "U1", local: "X1", components: ["ranking table", "filters", "sort", "pagination"] },
+  { type: "summary", refs: ["U1", "M1", "N1"], selected: "U1", local: "M1", components: ["comparison KPIs", "gap narrative", "insight callout"] },
+  { type: "card-cluster", refs: ["U1", "S1", "TD1"], selected: "U1", local: "S1", components: ["grouped cards", "section cards", "enterprise tokens"] },
+  { type: "heatmap", refs: ["U1", "X2", "E1"], selected: "U1", local: "E1", components: ["heatmap", "legend", "tooltip", "explanation"] },
+  { type: "method", refs: ["U1", "M4", "A1"], selected: "U1", local: "M4", components: ["checklist", "progress state", "self-audit"] },
+  { type: "card-cluster", refs: ["U1", "S1", "TD1"], selected: "U1", local: "TD1", components: ["vertical cards", "deep dive modules", "detail panes"] },
+  { type: "chart", refs: ["U1", "X2", "E1"], selected: "U1", local: "E1", components: ["chart wrapper", "vertical breakdown", "callouts"] },
+  { type: "chart", refs: ["U1", "X2", "E1"], selected: "U1", local: "E1", components: ["chart wrapper", "comparison cards", "notes"] },
+  { type: "lite-table", refs: ["U1", "T1", "SE1"], selected: "U1", local: "T1", components: ["price table", "light filters", "notes"] },
+  { type: "foreword", refs: ["U1", "M3", "D1"], selected: "U1", local: "D1", components: ["method prose", "limitations", "callouts"] },
+  { type: "conclusion", refs: ["U1", "M2", "V1"], selected: "U1", local: "M2", components: ["summary cards", "CTA rhythm", "footer"] },
+  { type: "conclusion", refs: ["U1", "M2", "V1"], selected: "U1", local: "M2", components: ["future questions", "CTA block", "contact"] },
+  { type: "appendix", refs: ["U1", "V1", "SE1"], selected: "U1", local: "SE1", components: ["appendix nav", "searchable list", "footer"] },
 ];
 
 function escapeHtml(value) {
@@ -214,15 +338,41 @@ function renderPriceTable() {
 }
 
 function renderBlueprintMeta(blueprint) {
+  const localReference = blueprint.local || blueprint.refs[1] || blueprint.selected;
+  const citationLabel = (ref) => {
+    const index = citationOrder.indexOf(ref);
+    return index >= 0 ? index + 1 : "?";
+  };
+  const renderCitation = (ref) => {
+    const source = referenceRegistry[ref];
+    if (!source) {
+      return "";
+    }
+
+    return `
+      <li>
+        <a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">
+          <span>[${citationLabel(ref)}]</span>
+          <strong>${escapeHtml(ref)}</strong>
+          <em>${escapeHtml(source.name)}</em>
+        </a>
+        <small>${escapeHtml(source.kind)} - ${escapeHtml(source.note)} - ${escapeHtml(source.license)}</small>
+      </li>
+    `;
+  };
+
   return `
     <div class="template-meta" aria-label="Template mapping">
       <span>${escapeHtml(blueprint.type)}</span>
-      <strong>${escapeHtml(blueprint.selected)}</strong>
-      <em>${blueprint.refs.map(escapeHtml).join(" / ")}</em>
+      <strong>${escapeHtml(blueprint.selected)} shell / ${escapeHtml(localReference)} local</strong>
+      <em>${blueprint.refs.map((ref) => `[${citationLabel(ref)}] ${ref}`).join(" / ")}</em>
     </div>
     <div class="component-priority" aria-label="Component priority">
       ${blueprint.components.map((component) => `<span>${escapeHtml(component)}</span>`).join("")}
     </div>
+    <ol class="citation-list" aria-label="Section references">
+      ${blueprint.refs.map(renderCitation).join("")}
+    </ol>
   `;
 }
 
@@ -232,8 +382,9 @@ function renderChapter(page) {
   const fullText = pageText(page);
   const blueprint = pageBlueprints[page.number - 1] || {
     type: "article",
-    refs: ["C1", "D2", "B2"],
-    selected: "C1",
+    refs: ["U1", "M3", "D1"],
+    selected: "U1",
+    local: "M3",
     components: ["prose", "notes", "source text"],
   };
 
