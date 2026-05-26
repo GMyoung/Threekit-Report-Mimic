@@ -41,6 +41,31 @@ const chapterTitles = [
   "Companies in the cohort",
 ];
 
+const pageBlueprints = [
+  { type: "cover", refs: ["A1", "A2", "A3"], selected: "A2", components: ["hero", "title block", "subtitle", "date", "logo"] },
+  { type: "kpi-summary", refs: ["B1", "B3", "E3"], selected: "B1", components: ["stat cards", "trend chart", "highlight list"] },
+  { type: "foreword", refs: ["C1", "C2", "C3"], selected: "C1", components: ["author meta", "lead paragraph", "long copy"] },
+  { type: "research-method", refs: ["D1", "D2", "D3"], selected: "D2", components: ["hero intro", "feature grid", "notes"] },
+  { type: "contents", refs: ["D2", "H2", "B2"], selected: "D2", components: ["chapter nav", "subsection list", "progress marker"] },
+  { type: "executive-summary", refs: ["B1", "I3", "J1"], selected: "I3", components: ["summary cards", "main chart", "key bullets"] },
+  { type: "definition-explainer", refs: ["G3", "G5", "G2"], selected: "G3", components: ["bar chart", "callout notes", "definitions"] },
+  { type: "scoring-method", refs: ["E2", "G4", "E1"], selected: "E2", components: ["stepper", "methodology diagram", "radar"] },
+  { type: "distribution-example", refs: ["G3", "G6", "G2"], selected: "G3", components: ["chart", "annotation", "worked example"] },
+  { type: "ranking-table", refs: ["F1", "F2", "F3"], selected: "F1", components: ["table", "filters", "sort", "pagination"] },
+  { type: "comparison", refs: ["B1", "G3", "J1"], selected: "G3", components: ["kpi cards", "comparison bars", "insight callout"] },
+  { type: "intent-cards", refs: ["A2", "D1", "B2"], selected: "B2", components: ["grouped cards", "icons", "short copy"] },
+  { type: "heatmap", refs: ["G1", "G2", "J1"], selected: "G2", components: ["heatmap", "legend", "tooltip", "explanation panel"] },
+  { type: "self-audit", refs: ["E2", "I1", "E3"], selected: "E2", components: ["checklist", "progress state", "sticky summary"] },
+  { type: "vertical-deep-dive", refs: ["F1", "H4", "H3"], selected: "H3", components: ["ranked table", "filters", "detail pane"] },
+  { type: "vertical-deep-dive", refs: ["J1", "C3", "E1"], selected: "J1", components: ["section intro", "infographic", "ranked callouts"] },
+  { type: "vertical-deep-dive", refs: ["J1", "H3", "C3"], selected: "J1", components: ["deep-dive modules", "comparison cards"] },
+  { type: "price-table", refs: ["J2", "F3", "B3"], selected: "F3", components: ["chapter opener", "price table", "notes"] },
+  { type: "limitations", refs: ["D2", "D1", "C1"], selected: "D2", components: ["prose", "inline lists", "note blocks"] },
+  { type: "conclusion", refs: ["A3", "A2", "J1"], selected: "A3", components: ["conclusion headline", "insight cards"] },
+  { type: "future-cta", refs: ["A2", "J2", "D1"], selected: "A2", components: ["future questions", "CTA block", "contact link"] },
+  { type: "appendix", refs: ["D2", "H1", "F3"], selected: "D2", components: ["appendix nav", "searchable table", "footer"] },
+];
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (character) => {
     const entities = {
@@ -188,19 +213,41 @@ function renderPriceTable() {
   `;
 }
 
+function renderBlueprintMeta(blueprint) {
+  return `
+    <div class="template-meta" aria-label="Template mapping">
+      <span>${escapeHtml(blueprint.type)}</span>
+      <strong>${escapeHtml(blueprint.selected)}</strong>
+      <em>${blueprint.refs.map(escapeHtml).join(" / ")}</em>
+    </div>
+    <div class="component-priority" aria-label="Component priority">
+      ${blueprint.components.map((component) => `<span>${escapeHtml(component)}</span>`).join("")}
+    </div>
+  `;
+}
+
 function renderChapter(page) {
   const title = chapterTitles[page.number - 1] || `Section ${page.number}`;
   const blocks = passageBlocks(page);
   const fullText = pageText(page);
+  const blueprint = pageBlueprints[page.number - 1] || {
+    type: "article",
+    refs: ["C1", "D2", "B2"],
+    selected: "C1",
+    components: ["prose", "notes", "source text"],
+  };
 
   return `
-    <section class="chapter-section" id="section-${page.number}" data-section="${page.number}" data-source="${escapeHtml(
+    <section class="chapter-section chapter-section--${escapeHtml(blueprint.type)}" id="section-${page.number}" data-section="${page.number}" data-page-type="${escapeHtml(
+      blueprint.type,
+    )}" data-template="${escapeHtml(blueprint.selected)}" data-source="${escapeHtml(
       fullText.toLowerCase(),
     )}">
       <div class="chapter-intro">
         <div class="chapter-kicker">Section ${String(page.number).padStart(2, "0")}</div>
         <h2>${escapeHtml(title)}</h2>
         ${renderMetricStrip(page)}
+        ${renderBlueprintMeta(blueprint)}
       </div>
 
       <div class="chapter-body">

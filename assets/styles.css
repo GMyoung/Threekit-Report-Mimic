@@ -533,6 +533,55 @@ h1 em {
   line-height: 1;
 }
 
+.template-meta {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1.35rem;
+  max-width: 24rem;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.template-meta span,
+.template-meta strong,
+.template-meta em {
+  display: block;
+}
+
+.template-meta strong {
+  color: var(--accent);
+  font-size: 1.125rem;
+  font-style: italic;
+}
+
+.template-meta em {
+  color: rgba(23, 50, 53, 0.48);
+  font-style: normal;
+  letter-spacing: 0.08em;
+}
+
+.component-priority {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+
+.component-priority span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 0.65rem;
+  color: var(--ink-soft);
+  background: rgba(255, 253, 250, 0.64);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
 .passage-stack {
   display: grid;
   gap: var(--copy-gap);
@@ -571,6 +620,57 @@ h1 em {
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.chapter-section--kpi-summary .passage-stack,
+.chapter-section--executive-summary .passage-stack,
+.chapter-section--comparison .passage-stack,
+.chapter-section--intent-cards .passage-stack,
+.chapter-section--self-audit .passage-stack,
+.chapter-section--future-cta .passage-stack,
+.chapter-section--conclusion .passage-stack {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.chapter-section--kpi-summary .passage-card,
+.chapter-section--executive-summary .passage-card,
+.chapter-section--comparison .passage-card,
+.chapter-section--intent-cards .passage-card,
+.chapter-section--self-audit .passage-card,
+.chapter-section--future-cta .passage-card,
+.chapter-section--conclusion .passage-card {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-left: 5px solid rgba(235, 135, 104, 0.62);
+  border-radius: 8px;
+  padding: 1rem 1.125rem;
+  background: rgba(255, 253, 250, 0.52);
+}
+
+.chapter-section--ranking-table .chapter-body,
+.chapter-section--price-table .chapter-body,
+.chapter-section--appendix .chapter-body,
+.chapter-section--heatmap .chapter-body {
+  max-width: 980px;
+}
+
+.chapter-section--ranking-table .passage-card,
+.chapter-section--price-table .passage-card,
+.chapter-section--appendix .passage-card,
+.chapter-section--heatmap .passage-card {
+  width: 100%;
+}
+
+.chapter-section--foreword .passage-card,
+.chapter-section--limitations .passage-card {
+  width: min(100%, 64ch);
+  font-size: calc(var(--copy-size) + 0.0625rem);
+}
+
+.chapter-section--cover,
+.chapter-section--contents {
+  min-height: 72svh;
 }
 
 .price-table {
@@ -788,6 +888,21 @@ body:not(.show-sources) .source-ledger {
   .metric-strip span {
     min-height: 52px;
     font-size: 1.875rem;
+  }
+
+  .template-meta,
+  .component-priority {
+    max-width: 100%;
+  }
+
+  .chapter-section--kpi-summary .passage-stack,
+  .chapter-section--executive-summary .passage-stack,
+  .chapter-section--comparison .passage-stack,
+  .chapter-section--intent-cards .passage-stack,
+  .chapter-section--self-audit .passage-stack,
+  .chapter-section--future-cta .passage-stack,
+  .chapter-section--conclusion .passage-stack {
+    grid-template-columns: 1fr;
   }
 
   .passage-card {
