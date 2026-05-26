@@ -1,5 +1,6 @@
 import { reportMeta } from "@/data/report/report-meta";
 import type { ReportPage } from "@/lib/report/page-types";
+import { PretextText } from "@/components/report/PretextText";
 import { ThreeSceneSlot } from "@/components/webgl/ThreeSceneSlot";
 
 export function HeroCover({ page, anchorId }: { page: ReportPage; anchorId: string }) {
@@ -7,8 +8,12 @@ export function HeroCover({ page, anchorId }: { page: ReportPage; anchorId: stri
     <div className="page-layout page-layout--hero">
       <div className="hero-copy">
         <p>{reportMeta.date}</p>
-        <h1>{reportMeta.title}</h1>
-        <span>{reportMeta.subtitle}</span>
+        <h1>
+          <PretextText text={reportMeta.title} wordBreak="keep-all" />
+        </h1>
+        <span>
+          <PretextText text={reportMeta.subtitle} />
+        </span>
         <small>
           {reportMeta.sponsor} | {reportMeta.website} | {reportMeta.contact}
         </small>

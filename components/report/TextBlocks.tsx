@@ -1,4 +1,5 @@
 import type { ReportBlock } from "@/lib/report/page-types";
+import { PretextText } from "@/components/report/PretextText";
 
 export function TextBlocks({ blocks }: { blocks?: ReportBlock[] }) {
   if (!blocks?.length) return null;
@@ -6,7 +7,7 @@ export function TextBlocks({ blocks }: { blocks?: ReportBlock[] }) {
     <div className="text-blocks">
       {blocks.map((block, index) => (
         <p className={`text-block text-block--${block.type}`} key={`${block.type}-${index}`}>
-          {block.text}
+          <PretextText text={block.text} />
         </p>
       ))}
     </div>
