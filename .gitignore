@@ -13,3 +13,9 @@ source/rendered-text-verify.json
 .DS_Store
 Thumbs.db
 node_modules/
+.next/
+out/
+tsconfig.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
