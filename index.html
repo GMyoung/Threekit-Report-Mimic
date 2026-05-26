@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The State of Configurable Product Manufacturing Websites</title>
+    <meta
+      name="description"
+      content="A longform interactive website containing the full extracted May 2026 Threekit report text."
+    >
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <div class="reading-progress" aria-hidden="true">
+      <span id="readingProgress"></span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Threekit report home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>threekit</span>
+      </a>
+
+      <nav class="site-nav" id="siteNav" aria-label="Report sections"></nav>
+
+      <button class="summary-button" type="button" id="copyReport">Copy report text</button>
+    </header>
+
+    <main id="top">
+      <section class="hero-section" aria-labelledby="heroTitle">
+        <div class="hero-accent" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="eyebrow">A Threekit Research Report / May 2026</div>
+          <h1 id="heroTitle">
+            <span>The State of</span>
+            <em>Configurable</em>
+            <span>Product</span>
+            <span>Manufacturing</span>
+            <span>Websites</span>
+          </h1>
+          <p class="hero-subtitle pretext-copy">
+            How configurable-product manufacturers lose buyers online, a 100-company website audit.
+          </p>
+        </div>
+
+        <aside class="hero-panel" aria-label="Report summary">
+          <div>
+            <span class="panel-number">100</span>
+            <span class="panel-label">manufacturer websites audited</span>
+          </div>
+          <div>
+            <span class="panel-number">2.25</span>
+            <span class="panel-label">median Buyer Enablement Score</span>
+          </div>
+          <div>
+            <span class="panel-number">9x</span>
+            <span class="panel-label">score gap between channel-locked and direct/hybrid sites</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="report-toolbar" aria-label="Reading controls">
+        <div class="search-box">
+          <label for="reportSearch">Search report</label>
+          <input id="reportSearch" type="search" autocomplete="off" spellcheck="false" placeholder="pricing, configurator, dealer">
+          <span id="searchCount" aria-live="polite">22 sections</span>
+        </div>
+
+        <div class="toolbar-actions">
+          <div class="segmented-control" aria-label="Reading density">
+            <button type="button" data-density="compact" aria-pressed="false">Compact</button>
+            <button type="button" data-density="comfortable" aria-pressed="true">Comfortable</button>
+            <button type="button" data-density="roomy" aria-pressed="false">Roomy</button>
+          </div>
+          <button class="source-toggle" type="button" id="toggleSources" aria-pressed="false">Show sources</button>
+        </div>
+      </section>
+
+      <div class="longform-shell">
+        <aside class="chapter-rail" aria-label="Chapter rail">
+          <div class="rail-heading">Full report</div>
+          <nav id="chapterRail"></nav>
+        </aside>
+
+        <article class="report-longform" id="reportLongform" aria-label="Full report text"></article>
+      </div>
+    </main>
+
+    <script src="assets/js/report-data.js"></script>
+    <script src="assets/js/pretext.bundle.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>

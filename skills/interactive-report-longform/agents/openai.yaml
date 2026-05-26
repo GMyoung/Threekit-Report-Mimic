@@ -1,0 +1,8 @@
+interface:
+  display_name: "Interactive Report Longform"
+  short_description: "Build copyable longform report websites from source text."
+  brand_color: "#EB8768"
+  default_prompt: "Use $interactive-report-longform to turn this report text and design brief into a polished interactive website."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,15 @@
+source/*.png
+source/*.jpg
+source/*.jpeg
+source/*.webp
+source/*.gif
+source/*-desktop*.png
+source/*-mobile*.png
+source/*-wide*.png
+source/*section*.png
+source/site-smoke.json
+source/rendered-text-verify.json
+
+.DS_Store
+Thumbs.db
+node_modules/
