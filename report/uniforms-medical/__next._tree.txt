@@ -1,2 +1,2 @@
-:HL["/Threekit-Report-Mimic/_next/static/chunks/125knjcghyyqi.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"report","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"uniforms-medical","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"0TKdFGFvuLA4Rt69-tXg6"}
+:HL["/Threekit-Report-Mimic/_next/static/chunks/0qsgnl6llm-iu.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"report","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"uniforms-medical","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"emrM4oZ7PD9z7nxRKa-rQ"}
