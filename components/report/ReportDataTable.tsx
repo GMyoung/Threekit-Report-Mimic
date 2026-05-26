@@ -58,6 +58,7 @@ export function ReportDataTable<T extends object>({ data, columns, label, densit
 
   return (
     <div className={`data-table data-table--${density}`}>
+      <h3 className="data-table__title">{label}</h3>
       <div className="data-table__toolbar">
         <label>
           <span className="sr-only">Search {label}</span>

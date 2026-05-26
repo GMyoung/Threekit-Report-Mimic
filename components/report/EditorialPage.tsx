@@ -5,6 +5,13 @@ export function EditorialPage({ page }: { page: ReportPage }) {
   return (
     <div className="page-layout page-layout--prose">
       <TextBlocks blocks={page.body} />
+      {page.pageType === "foreword" ? (
+        <aside className="foreword-signature" aria-label="Foreword author">
+          <div aria-hidden="true" />
+          <strong>Matt Gorniak</strong>
+          <span>CEO, Threekit</span>
+        </aside>
+      ) : null}
     </div>
   );
 }
