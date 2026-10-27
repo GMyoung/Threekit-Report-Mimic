@@ -5,6 +5,7 @@ import { GlobalCanvasRoot } from "@/components/webgl/GlobalCanvasRoot";
 export const metadata: Metadata = {
   title: "The State of Configurable Product Manufacturing Websites",
   description: "Interactive Threekit report microsite with data-driven sections and shared Three.js canvas.",
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
